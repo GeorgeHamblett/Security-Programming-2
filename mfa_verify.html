@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}MFA Verification{% endblock %}
+
+
+{% block content %}
+<h2>Enter your 6-digit code</h2>
+
+
+<form method="POST" action="{{ url_for('main.mfa_verify') }}" novalidate>
+{{ form.hidden_tag() }}
+{{ form.code(size=6) }}
+<button class="btn" type="submit">Verify</button>
+</form>
+
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}MFA Setup{% endblock %}
+{% block content %}
+<h2>Enable MFA</h2>
+
+<p>Scan this QR code:</p>
+{% if qr_base64 %}
+<img src="data:image/png;base64,{{ qr_base64 }}" alt="QR Code">
+{% endif %}
+
+<p class="muted">Or manually enter a set up key:</p>
+<code>{{ secret }}</code>
+
+<p>Enter the 6-digit code:</p>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    {{ form.code(size=6) }}
+    <button class="btn" type="submit">Verify</button>
+</form>
+{% endblock %}

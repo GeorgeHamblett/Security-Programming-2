@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<h1>Login</h1>
+
+
+<form method="POST" novalidate>
+{{ form.hidden_tag() }}
+
+
+<div class="field">
+<label for="{{ form.username.id }}">{{ form.username.label.text }}</label>
+{{ form.username(id=form.username.id, placeholder="Your username") }}
+{% if form.username.errors %}
+<div class="errors">{{ form.username.errors|join(', ') }}</div>
+{% endif %}
+</div>
+
+
+<div class="field">
+<label for="{{ form.password.id }}">{{ form.password.label.text }}</label>
+{{ form.password(id=form.password.id, placeholder="Your password") }}
+{% if form.password.errors %}
+<div class="errors">{{ form.password.errors|join(', ') }}</div>
+{% endif %}
+</div>
+
+
+{% if captcha_needed %}
+<div class="field">
+<label>Solve CAPTCHA:</label>
+<div style="font-size:1.4rem;font-weight:bold;border:1px solid black; padding:.5rem;display:inline-block;">
+{{ captcha_code }}
+</div>
+{{ form.captcha(size=5, placeholder="Enter above text") }}
+</div>
+{% endif %}
+
+
+<button class="btn" type="submit">Login</button>
+</form>
+
+
+<hr>
+{% endblock %}
